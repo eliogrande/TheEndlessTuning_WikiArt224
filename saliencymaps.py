@@ -90,6 +90,7 @@ if __name__  == '__main__':
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = models.resnet18(pretrained=None)
+    model.eval()
     model.fc = nn.Sequential(
         nn.Linear(model.fc.in_features, out_features=14),
         nn.Linear(14,2))
@@ -102,3 +103,4 @@ if __name__  == '__main__':
     
     #explain_gradcam(image_path='./case_studies/2/127.jpg',model=model)
     #explain_rise(image_path='./case_studies/1/389.jpg',model=model,N=1500,device=device,fit_callback=fit_callback,exp_callback=explain_callback)
+
